@@ -39,3 +39,10 @@ raise, and the original exception (if any) will be chained.
 ## API
 
 `redirect_to_devnull()` — a context manager. Exported from the package root.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
